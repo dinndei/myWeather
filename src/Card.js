@@ -44,27 +44,33 @@ const Card = ({ city }) => {
     }
   }, [lat, lon]);
 
+  const cityName = city === "Alaska" ? "אלסקה" : weatherList.name;
+
     return (
         <MuiCard style={{ backgroundColor: "#E3F2FD", margin: "10px" ,direction: "rtl"}}>
         <CardContent>
-          <Typography variant="h5" component="h2">
-            {weatherList.name}
-          </Typography>
+         
           {weatherList.main ? (
-         <>
-           {(weatherList.main.temp < 20) ? (
-                <Typography variant="h6" style={{ color: "blue" }}>🧊</Typography>
-              ) : (weatherList.main.temp > 30) ? (
-                <Typography variant="h6" style={{ color: "red" }}>☀️</Typography>
-              ) : (
-                <Typography variant="h6" style={{ color: "green" }}>⛅</Typography>
-              )}
+       <>
+       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+       <Typography variant="h5" component="h2">
+         {cityName}
+       </Typography>
+       {weatherList.main && weatherList.main.temp < 20 ? (
+         <Typography variant="h6" style={{ color: "blue" }}>🧊</Typography>
+       ) : weatherList.main && weatherList.main.temp > 30 ? (
+         <Typography variant="h6" style={{ color: "red" }}>☀️</Typography>
+       ) : (
+         <Typography variant="h6" style={{ color: "green" }}>⛅</Typography>
+       )}
+     </div>
+              
               <Typography>{weatherList.weather[0].description}</Typography>
               <Typography><strong>טמפרטורה: </strong>  {weatherList.main.temp}° C</Typography>
               <Typography><strong>מרגיש כמו: </strong> {weatherList.main.feels_like}° C</Typography>
               <Typography><strong>אחוזי לחות: </strong> % {weatherList.main.humidity}</Typography>
-            </>
-          ) : (
+            
+              </> ) : (
             <LinearProgress /> 
           )}
         </CardContent>

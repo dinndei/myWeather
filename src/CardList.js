@@ -7,9 +7,9 @@ let cityArr=["Eilat","Alaska","New York","London"];
     
         <Container>
         <Typography variant="h3" component="h1" align="center" gutterBottom>
-          Weather Card List
+         מזג אוויר ברחבי העולם
         </Typography>
-        <Grid container spacing={2}>
+        <Grid container spacing={8}>
           {cityArr.map((item, index) => (
             <Grid item xs={12} sm={6} key={index}>
               <Card city={item} />
